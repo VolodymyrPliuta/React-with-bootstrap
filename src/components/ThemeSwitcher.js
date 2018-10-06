@@ -16,7 +16,7 @@ const CustomCardItem = ( { cardNumber, nextButton, header, body} ) => {
         <div className="card-body">
           { body }
         </div>
-        { (nextButton === "true")
+        { (nextButton === true)
           ? <button className="btn btn-link" data-toggle="collapse" data-target={"#collapse"+nextNumber}>Next</button>
           : <div></div>
         }
@@ -48,7 +48,7 @@ class ThemeSwitcher extends Component {
                     
           <CustomCardItem
             cardNumber="1"
-            nextButton="true"
+            nextButton={ true }
             header="Collapsible Group Item #1"
             body="Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
             3 wolf moon officia aute, non cupidatat skateboard dolor brunch. 
@@ -59,21 +59,21 @@ class ThemeSwitcher extends Component {
           
           <CustomCardItem
             cardNumber="2"
-            nextButton="true"
+            nextButton={ true }
             header="Collapsible Group Item #2"
             body="Body for card number 2."
           />
 
           <CustomCardItem
             cardNumber="3"
-            nextButton="true"
+            nextButton={ true }
             header="Collapsible Group Item #3"
             body="Did you know, one in five college graduates are named fred?"
           />
 
          <CustomCardItem
             cardNumber="4"
-            nextButton="false"
+            nextButton={ false }
             header="Collapsible Group Item #4"
             body="body 4 is done"
           />
