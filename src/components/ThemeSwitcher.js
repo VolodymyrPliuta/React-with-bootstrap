@@ -1,5 +1,31 @@
 import React, { Component } from 'react';
 
+const CustomCardItem = ( { cardNumber, showDefault, nextButton, header, body} ) => {
+  let nextNumber = +cardNumber + 1
+  let showy = (showDefault==true) ? " show" : ""
+  return (
+    <div className="card">
+      <div className="card-header" id={"heading"+cardNumber}>
+        <h5 className="mb-0">
+          <button className="btn btn-link" data-toggle="collapse" data-target={"#collapse"+cardNumber}>
+            { header }
+          </button>
+        </h5>
+      </div>
+
+      <div id={"collapse"+cardNumber} className={"collapse"+ showy} >
+        <div className="card-body">
+          { body }
+        </div>
+        { (nextButton === true)
+          ? <button className="btn btn-link" data-toggle="collapse" data-target={"#collapse"+nextNumber}>Next</button>
+          : <div></div>
+        }
+      </div>
+    </div>
+  )
+}
+
 class ThemeSwitcher extends Component {
   state = { theme: null }
 
@@ -20,84 +46,41 @@ class ThemeSwitcher extends Component {
     return (
       <div>
         <div className="accordion" id="accordionExample">
-          {/*
-            <CustomCardItem
-              cardNumber="One"
-              nextButton="true"
-              header="Collapsible Group Item #1"
-              body="Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
-              3 wolf moon officia aute, non cupidatat skateboard dolor brunch. 
-              Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. 
-              Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. 
-              Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
-            />
-          */}
-          <div className="card">
-            <div className="card-header" id="headingOne">
-              <h5 className="mb-0">
-                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
-                  Collapsible Group Item #1
-                </button>
-              </h5>
-            </div>
+                    
+          <CustomCardItem
+            cardNumber="1"
+            showDefault={ true }
+            nextButton={ true }
+            header="Collapsible Group Item #1"
+            body="Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
+            3 wolf moon officia aute, non cupidatat skateboard dolor brunch. 
+            Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. 
+            Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. 
+            Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS."
+          />
+          
+          <CustomCardItem
+            cardNumber="2"
+            nextButton={ true }
+            header="Collapsible Group Item #2"
+            body="Body for card number 2."
+          />
 
-            <div id="collapseOne" className="collapse show" aria-labelledby="headingThree" >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-              <button className="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
-                  Next
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-header" id="headingTwo">
-              <h5 className="mb-0">
-                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
-                  Collapsible Group Item #2
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" className="collapse show" aria-labelledby="headingTwo" >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-              <button className="btn btn-link" data-toggle="collapse" data-target="#collapseThree">
-                Next
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-header" id="headingThree">
-              <h5 className="mb-0">
-                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseThree">
-                  Collapsible Group Item #3
-                </button>
-              </h5>
-            </div>
-            <div id="collapseThree" className="collapse show" aria-labelledby="headingThree" >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-              <button className="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
-                Next
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <div className="card-header" id="headingFour">
-              <h5 className="mb-0">
-                <button className="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
-                  Collapsible Group Item #4
-                </button>
-              </h5>
-            </div>
-            <div id="collapseFour" className="collapse show" aria-labelledby="headingThree" >
-              <div className="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
-          </div>
+          <CustomCardItem
+            cardNumber="3"
+            nextButton={ true }
+            header="Collapsible Group Item #3"
+            body="Did you know, one in five college graduates are named fred?"
+          />
+
+         <CustomCardItem
+            cardNumber="4"
+            nextButton={ false }
+            header="Collapsible Group Item #4"
+            body="body 4 is done"
+          />
+
+
         </div>
         <br/>
         <br/>
