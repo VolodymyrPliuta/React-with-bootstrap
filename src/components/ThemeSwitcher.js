@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-const CustomCardItem = ( { cardNumber, nextButton, header, body} ) => {
+const CustomCardItem = ( { cardNumber, showDefault, nextButton, header, body} ) => {
   let nextNumber = +cardNumber + 1
+  let showy = (showDefault==true) ? " show" : ""
   return (
     <div className="card">
       <div className="card-header" id={"heading"+cardNumber}>
@@ -12,7 +13,7 @@ const CustomCardItem = ( { cardNumber, nextButton, header, body} ) => {
         </h5>
       </div>
 
-      <div id={"collapse"+cardNumber} className="collapse show" >
+      <div id={"collapse"+cardNumber} className={"collapse"+ showy} >
         <div className="card-body">
           { body }
         </div>
@@ -48,6 +49,7 @@ class ThemeSwitcher extends Component {
                     
           <CustomCardItem
             cardNumber="1"
+            showDefault={ true }
             nextButton={ true }
             header="Collapsible Group Item #1"
             body="Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 
