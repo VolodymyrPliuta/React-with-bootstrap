@@ -16,9 +16,10 @@ const CustomCardItem = ( { cardNumber, nextButton, header, body} ) => {
         <div className="card-body">
           { body }
         </div>
-        <button className="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">
-            Next
-        </button>
+        { (nextButton === "true")
+          ? <button className="btn btn-link" data-toggle="collapse" data-target="#collapseTwo">Next</button>
+          : <div></div>
+        }
       </div>
     </div>
   )
@@ -36,8 +37,6 @@ class ThemeSwitcher extends Component {
     evt.preventDefault();
     this.setState({ theme });
   }
-
-  
 
   render() {
     const { theme } = this.state;
