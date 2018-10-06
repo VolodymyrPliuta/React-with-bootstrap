@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 
 const CustomCardItem = ( { cardNumber, nextButton, header, body} ) => {
-  console.log( { cardNumber, nextButton, header} )
+  let nextNumber = +cardNumber + 1
   return (
     <div className="card">
-      <div className="card-header" id="heading1">
+      <div className="card-header" id={"heading"+cardNumber}>
         <h5 className="mb-0">
-          <button className="btn btn-link" data-toggle="collapse" data-target="#collapse1">
+          <button className="btn btn-link" data-toggle="collapse" data-target={"#collapse"+cardNumber}>
             { header }
           </button>
         </h5>
       </div>
 
-      <div id="collapse1" className="collapse show" >
+      <div id={"collapse"+cardNumber} className="collapse show" >
         <div className="card-body">
           { body }
         </div>
         { (nextButton === "true")
-          ? <button className="btn btn-link" data-toggle="collapse" data-target="#collapse2">Next</button>
+          ? <button className="btn btn-link" data-toggle="collapse" data-target={"#collapse"+nextNumber}>Next</button>
           : <div></div>
         }
       </div>
