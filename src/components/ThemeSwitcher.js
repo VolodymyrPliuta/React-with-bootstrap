@@ -7,11 +7,37 @@ class ThemeSwitcher extends Component {
     this.state = {
       arrayOfCards: [ "show", " ", " ", " ", " " ]
     }
+    this.nextButtonAccordianItems = this.nextButtonAccordianItems.bind(this);
+    this.normalAccordianItem      = this.normalAccordianItem.bind(this);
   }
   // need to be able to manipulate the state from the containing component.
   // pass the bound function into the component.
   // myjaxchamber.com
 //
+
+  nextButtonAccordianItems( cardNumber ) {
+    const newItems = [...this.state.arrayOfCards];
+    const newNum = +cardNumber+1
+    newItems[newNum] = (newItems[newNum] === "show")
+      ? newItems[newNum] = "show"
+      : newItems[newNum] = "show"
+
+    this.setState({
+      arrayOfCards: newItems
+    });
+  }
+
+  normalAccordianItem( cardNumber ) {
+    const newItems = [...this.state.arrayOfCards];
+
+    newItems[cardNumber] = (newItems[cardNumber] !== "show")
+      ? newItems[cardNumber] = "show"
+      : newItems[cardNumber] = " "
+
+    this.setState({
+      arrayOfCards: newItems
+    });
+  }
 
 
   render() {
@@ -25,6 +51,8 @@ class ThemeSwitcher extends Component {
 
             nextButton={ true }
             showToggle={this.state.arrayOfCards[0]}
+            nextButtonAccordianItems={this.nextButtonAccordianItems}
+            normalAccordianItem={this.normalAccordianItem}
           />
 
           <CustomCardItem
@@ -38,6 +66,8 @@ class ThemeSwitcher extends Component {
 
             nextButton={ true }
             showToggle={this.state.arrayOfCards[1]}
+            nextButtonAccordianItems={this.nextButtonAccordianItems}
+            normalAccordianItem={this.normalAccordianItem}
           />
 
           <CustomCardItem
@@ -47,6 +77,8 @@ class ThemeSwitcher extends Component {
 
             nextButton={ true }
             showToggle={this.state.arrayOfCards[2]}
+            nextButtonAccordianItems={this.nextButtonAccordianItems}
+            normalAccordianItem={this.normalAccordianItem}
           />
 
           <CustomCardItem
@@ -56,6 +88,8 @@ class ThemeSwitcher extends Component {
 
             nextButton={ true }
             showToggle={this.state.arrayOfCards[3]}
+            nextButtonAccordianItems={this.nextButtonAccordianItems}
+            normalAccordianItem={this.normalAccordianItem}
           />
 
          <CustomCardItem
@@ -65,6 +99,8 @@ class ThemeSwitcher extends Component {
 
             nextButton={ false }
             showToggle={this.state.arrayOfCards[4]}
+            nextButtonAccordianItems={this.nextButtonAccordianItems}
+            normalAccordianItem={this.normalAccordianItem}
           />
 
         </div>
@@ -73,7 +109,7 @@ class ThemeSwitcher extends Component {
   }
 }
 
-const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle } ) => {
+const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle, normalAccordianItem, nextButtonAccordianItems } ) => {
 
   /* button to call function. */
   console.log({showToggle})
@@ -81,7 +117,7 @@ const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle } )
     <div className="card">
       <div className="card-header" id={"heading"+cardNumber}>
         <h5 className="mb-0">
-          <button className="btn btn-link" >
+          <button className="btn btn-link" onClick={normalAccordianItem.bind(null, cardNumber)}>
             { header }
           </button>
         </h5>
@@ -92,7 +128,7 @@ const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle } )
           { body }
         </div>
         { (nextButton === true)
-          ? <button className="btn btn-link" >Next</button>
+          ? <button className="btn btn-link" onClick={nextButtonAccordianItems.bind(null, cardNumber)}>Next</button>
           : <div></div>
         }
       </div>
