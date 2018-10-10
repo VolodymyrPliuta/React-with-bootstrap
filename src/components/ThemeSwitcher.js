@@ -16,6 +16,7 @@ class ThemeSwitcher extends Component {
   nextButtonAccordianItems = ( cardNumber ) => {
     const newItems = [...this.state.arrayOfCards];
     const newNum = +cardNumber+1
+    newItems[cardNumber] = " "
     newItems[newNum] = (newItems[newNum] === "show")
       ? newItems[newNum] = "show"
       : newItems[newNum] = "show"
