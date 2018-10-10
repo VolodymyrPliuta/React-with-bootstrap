@@ -7,15 +7,13 @@ class ThemeSwitcher extends Component {
     this.state = {
       arrayOfCards: [ "show", " ", " ", " ", " " ]
     }
-    this.nextButtonAccordianItems = this.nextButtonAccordianItems.bind(this);
-    this.normalAccordianItem      = this.normalAccordianItem.bind(this);
   }
   // need to be able to manipulate the state from the containing component.
   // pass the bound function into the component.
   // myjaxchamber.com
 //
 
-  nextButtonAccordianItems( cardNumber ) {
+  nextButtonAccordianItems = ( cardNumber ) => {
     const newItems = [...this.state.arrayOfCards];
     const newNum = +cardNumber+1
     newItems[newNum] = (newItems[newNum] === "show")
@@ -27,7 +25,7 @@ class ThemeSwitcher extends Component {
     });
   }
 
-  normalAccordianItem( cardNumber ) {
+  normalAccordianItem = ( cardNumber ) => {
     const newItems = [...this.state.arrayOfCards];
 
     newItems[cardNumber] = (newItems[cardNumber] !== "show")
@@ -110,14 +108,14 @@ class ThemeSwitcher extends Component {
 }
 
 const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle, normalAccordianItem, nextButtonAccordianItems } ) => {
-
+  
   /* button to call function. */
   console.log({showToggle})
   return (
     <div className="card">
       <div className="card-header" id={"heading"+cardNumber}>
         <h5 className="mb-0">
-          <button className="btn btn-link" onClick={normalAccordianItem.bind(null, cardNumber)}>
+          <button className="btn btn-link" onClick={ ()=>normalAccordianItem(cardNumber) }>
             { header }
           </button>
         </h5>
@@ -128,7 +126,7 @@ const CustomCardItem = ( { cardNumber , header, body, nextButton, showToggle, no
           { body }
         </div>
         { (nextButton === true)
-          ? <button className="btn btn-link" onClick={nextButtonAccordianItems.bind(null, cardNumber)}>Next</button>
+          ? <button className="btn btn-link" onClick={ ()=>nextButtonAccordianItems(cardNumber) }>Next</button>
           : <div></div>
         }
       </div>
